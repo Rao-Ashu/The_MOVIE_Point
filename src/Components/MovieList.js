@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import MovieCard from './MovieCard';
+import LRUCache from 'lru-cache';
+
 
 
 function MovieList({searchName}) {
@@ -10,6 +12,8 @@ function MovieList({searchName}) {
     const [totalResults, setTotalResults] = useState(0);
 
     
+    const cache = new LRUCache({ max: 300 });
+
 
     // const fetchMovies = async (searchTerm, page) => {
     //     const { data, error } = useSWR(`http://www.omdbapi.com/?s=${searchTerm}&page=${page}&apikey=37d2046b`, fetcher);
@@ -18,8 +22,23 @@ function MovieList({searchName}) {
     //   }
 
     const fetchMovies = async (searchTerm, page) => {
-        const response = await axios.get(`http://www.omdbapi.com/?s=${searchTerm}&page=${page}&apikey=37d2046b`);
+
+        const cacheKey = `movies:${searchTerm}`;
+        const cachedData = cache.get(cacheKey);
+        
+
+        // While making request to the OMDb API, first check if the data is already in the cache. If it is, return the cached data. If it's not, fetch the data from the API and add it to the cache:
+        if (cachedData) {
+            return cachedData;
+          }
+
+        const response = await axios.get(`https://www.omdbapi.com/?s=${searchTerm}&page=${page}&apikey=37d2046b`);
         setTotalResults(response.data.totalResults);
+
+        if (response.data.Search) {
+            cache.set(cacheKey, response.data);
+          }
+
         return response.data.Search;
       }
     
@@ -30,6 +49,7 @@ function MovieList({searchName}) {
             setMovies(data);
           })
           .catch((error) => {
+            alert("TOO MANY MOVIES NAMED WITH SEARCHED WORD, PLEASE SEARCH WITH MORE TITLE INFORMATION")
             console.error(error);
           });
       }, [searchName]);

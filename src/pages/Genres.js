@@ -25,7 +25,7 @@ function Genres() {
         <NavLinks />
         <SearchBox />
         {/* <hr className='border-gray-400 h-3'/> */}
-        <h1 className='text-2xl md:text-3xl font-serif capitalize px-16 pt-5'>Showing Results for: <span className='underline decoration-orange-400 decoration-2 underline-offset-4'>{movieInfo.genre}</span> </h1>
+        <h1 className='text-1xl md:text-3xl font-serif capitalize px-16 pt-5'>Showing Results for: <span className='underline decoration-orange-400 decoration-2 underline-offset-4'>{movieInfo.genre}</span> </h1>
         <MovieList searchName={movieInfo.genre}/>
       </div>
     </ThemeProvider>
