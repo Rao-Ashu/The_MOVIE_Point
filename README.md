@@ -1,6 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Deployed on vercel (Check out) -> https://the-movie-point.vercel.app/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
 
 First, run the development server:
 
@@ -14,25 +14,55 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### FEATURES
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**- The app uses the OMDb API (http://www.omdbapi.com/) to search for movies.**
 
-## Learn More
+**- The app have a {__SEARCH BAR__} where users can enter a movie title or can search using any word of a movie title.**
 
-To learn more about Next.js, take a look at the following resources:
+**- The app displays the search results as a list of movie titles with their posters.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**- Clicking on a **[DETAILS BUTTON]** take you to its details card (title, poster, release year) and also can watch the trailer.**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**- The app is responsive and work well on desktop, tablets and mobile devices.**
 
-## Deploy on Vercel
+**- Pagination has been implemented to display more search results **[LOAD MORE]** button at bottom (fetches 10 additional movies on each click). Additionally the button will get automatically disabled if no more movies are left to fetch from OMDB.**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**- Implemented caching to reduce API requests, using **[LRU Caching]** and **[useSWR hook]** (making it fast and reducing the load time each time on repeatative searchs). It [**saves 300 movies data**] and automatically updates the new query data in cache while deleting the least recent query data.**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**- Used animations and transitions to make the app polished.**
+
+**- Added a **[DARK/LIGHT theme]**, button is at top right corner, increasing the smooth user experience.**
+
+**- Users can filter search results by genre, the [**GENRE list**] is at the top of search bar, can navigate to any genre and if visited any genre again, caching efficiently reduces refetching everytime.**
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## **WHAT APP LOOKS ON DIFFERENT SCREENS**
+
+### Desktop
+
+<img width="600" alt="Screenshot 2023-04-06 143405" src="https://user-images.githubusercontent.com/110756551/230710073-176585fb-d679-4cdc-9d8a-80311599d9e1.png">
+<img width="600" alt="Screenshot 2023-04-06 143430" src="https://user-images.githubusercontent.com/110756551/230710090-8b0ad9f2-329e-4b80-bb36-5fc8145aa214.png">
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Tablet
+
+<img width="450" alt="Screenshot 2023-04-06 143453" src="https://user-images.githubusercontent.com/110756551/230710150-8ad576cf-24c4-4767-9f17-92ec541bfce7.png">
+<img width="450" alt="Screenshot 2023-04-06 143508" src="https://user-images.githubusercontent.com/110756551/230710153-66b59bcc-cc82-414b-ae54-f82bf7e13f05.png">
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Mobile Phone
+
+<img width="250" alt="Screenshot 2023-04-06 143535" src="https://user-images.githubusercontent.com/110756551/230710169-6cecc25f-e377-4eae-8133-5596780c1e05.png">
+<img width="250" alt="Screenshot 2023-04-06 143525" src="https://user-images.githubusercontent.com/110756551/230710175-7e2e6a15-b5c2-4ed9-89ab-d76a9eb21172.png">
+
+![image](https://user-images.githubusercontent.com/110756551/230721502-e20e878b-bc95-4078-bf5e-a21cf234cd01.png)
